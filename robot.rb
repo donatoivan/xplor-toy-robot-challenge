@@ -108,4 +108,19 @@ class Robot
       @compass.rotate!(3)
     end
   end
+
+  def move(facing)
+    return if @placed == false
+    case facing
+    when 'NORTH'
+      @x_coordinate += 1
+    when 'EAST'
+      @y_coordinate += 1
+    when 'SOUTH'
+      @x_coordinate -= 1
+    when 'WEST'
+      @y_coordinate -= 1
+    end
+    check_limits
+  end
 end
