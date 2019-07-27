@@ -8,8 +8,8 @@ class Robot
     @placed = false
   end
 
-   # display opening image
-   def landing
+  # display opening image
+  def landing
     puts `clear`
     print "\n\n"
     print ".-----.            .---.       .-.         .-. \n"
@@ -35,5 +35,28 @@ class Robot
     print "\n[c] Enter C to type in a command for the robot\n"
     print "[q] Enter Q to quit the program\n\n"
     print ':'
+
+    # get user input
+    @menu_option = gets.strip.downcase
+
+    case @menu_option
+    when 'c'
+      puts `clear`
+      explain_commands
+    when 'q'
+      # exit app
+      puts `clear`
+      print ".---.               .-..-..-.\n"
+      print ": .; :              : :: :: :\n"
+      print ":   .'.-..-. .--.   : :: :: :\n"
+      print ": .; :: :; :' '_.'  :_;:_;:_;\n"
+      print ":___.'`._. ;`.__.'  :_;:_;:_;\n"
+      print "       .-. :                 \n"
+      print "       `._.'                 \n\n\n"
+      exit
+    else
+      puts "\n\nInvalid option. Try again"
+      menu
+    end
   end
 end
