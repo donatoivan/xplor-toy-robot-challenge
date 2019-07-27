@@ -110,7 +110,7 @@ describe Robot do
   describe '.move' do
     subject(:robot) { described_class.new }
 
-    it 'does not register moves if robot is not placed on table' do
+    it 'does not register a move if robot is not placed on table' do
       robot.move(robot.compass[0])
       expect(robot.x_coordinate).to be(0)
     end
