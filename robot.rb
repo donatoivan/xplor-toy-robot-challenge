@@ -77,4 +77,14 @@ class Robot
     print "0,1,NORTH\n\n"
     print ':'
   end
+
+  def rotate_right
+    return if @placed == false
+    @compass.rotate!(1)
+  end
+
+  def rotate_left
+    return if @placed == false
+    @compass.rotate!(-1)
+  end
 end
