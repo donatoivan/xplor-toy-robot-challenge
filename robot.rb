@@ -139,4 +139,16 @@ class Robot
       @y_coordinate += 1
     end
   end
+
+  def place_check
+    @string = gets.strip
+    if @string.scan(/(\b(\w*PLACE\w*)\b )[0-4],[0-4],(NORTH|SOUTH|EAST|WEST)/).empty?
+      puts `clear`
+      print "### Incorrect Format ###\n\n"
+      explain_commands
+      place_check
+    else
+      @placed = true
+    end
+  end
 end
