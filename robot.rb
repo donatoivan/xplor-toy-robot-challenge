@@ -91,4 +91,21 @@ class Robot
   def report
     puts "X=#{@x_coordinate} Y=#{@y_coordinate} facing=#{@compass[0]}"
   end
+
+  def place(x, y, facing)
+    @x_coordinate = x
+    @y_coordinate = y
+    @placed = true
+    
+    case facing
+    when 'NORTH'
+      @compass.rotate!(0)
+    when 'EAST'
+      @compass.rotate!(1)
+    when 'SOUTH'
+      @compass.rotate!(2)
+    when 'WEST'
+      @compass.rotate!(3)
+    end
+  end
 end
