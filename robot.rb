@@ -1,5 +1,5 @@
 class Robot
-  attr_accessor :compass, :placed, :commands, :menu_option
+  attr_accessor :compass, :placed, :commands, :menu_option, :x_coordinate, :y_coordinate
   def initialize
     @compass = ["NORTH", "EAST", "SOUTH", "WEST"]
     @menu_option = ''
