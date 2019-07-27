@@ -1,8 +1,9 @@
 class Robot
-  attr_accessor :compass, :placed, :commands
+  attr_accessor :compass, :placed, :commands, :menu_option
   def initialize
     @commands = []
     @compass = ["NORTH", "EAST", "SOUTH", "WEST"]
+    @menu_option = ''
     @x_coordinate = 0
     @y_coordinate = 0
     @placed = false
@@ -41,23 +42,28 @@ class Robot
 
     case @menu_option
     when 'c'
+      puts @menu_option
       puts `clear`
       explain_commands
     when 'q'
       # exit app
-      puts `clear`
-      print ".---.               .-..-..-.\n"
-      print ": .; :              : :: :: :\n"
-      print ":   .'.-..-. .--.   : :: :: :\n"
-      print ": .; :: :; :' '_.'  :_;:_;:_;\n"
-      print ":___.'`._. ;`.__.'  :_;:_;:_;\n"
-      print "       .-. :                 \n"
-      print "       `._.'                 \n\n\n"
-      exit
+      exit_app
     else
       puts "\n\nInvalid option. Try again"
       menu
     end
+  end
+
+  def exit_app
+    puts `clear`
+    print ".---.               .-..-..-.\n"
+    print ": .; :              : :: :: :\n"
+    print ":   .'.-..-. .--.   : :: :: :\n"
+    print ": .; :: :; :' '_.'  :_;:_;:_;\n"
+    print ":___.'`._. ;`.__.'  :_;:_;:_;\n"
+    print "       .-. :                 \n"
+    print "       `._.'                 \n\n\n"
+    exit
   end
 
   def explain_commands
@@ -66,9 +72,10 @@ class Robot
     print "* MOVE will move the toy robot one unit forward in the direction it is currently facing.\n"
     print "* LEFT and RIGHT will rotate the robot 90 degrees in the specified direction without changing the position of the robot.\n"
     print "* REPORT will announce the X,Y and F of the robot. \n\n"
-    print " Any move that would cause the robot to fall will be ignored."
+    print " Any move that would cause the robot to fall will be ignored.\n"
+    print "[q] Enter Q to quit the program\n"
     print " The dimensions of the table are 5 units x 5 units (co-ordinates beyond (4,4) will not be accepted.\n"
-    print " A robot that is not on the table will ignore the MOVE, LEFT, RIGHT and REPORT commands."
+    print " A robot that is not on the table will ignore the MOVE, LEFT, RIGHT and REPORT commands.\n\n"
     print "### Example\n\n"
     print "PLACE 0,0,NORTH\n"
     print "MOVE\n"
@@ -92,12 +99,12 @@ class Robot
     puts "X=#{@x_coordinate} Y=#{@y_coordinate} facing=#{@compass[0]}"
   end
 
-  def place(x, y, facing)
-    @x_coordinate = x
-    @y_coordinate = y
+  def place(string)
+    @x_coordinate = string[6]
+    @y_coordinate = string[8]
     @placed = true
     
-    case facing
+    case string[10..-1]
     when 'NORTH'
       @compass.rotate!(0)
     when 'EAST'
@@ -140,15 +147,59 @@ class Robot
     end
   end
 
-  def place_check
+  def invalid_place(string)
+    return true if string.scan(/(\b(\w*PLACE\w*)\b )[0-4],[0-4],(NORTH|SOUTH|EAST|WEST)/).empty?
+
+    false
+  end
+
+  # def place_check(string)
+  #   if string.scan(/(\b(\w*PLACE\w*)\b )[0-4],[0-4],(NORTH|SOUTH|EAST|WEST)/).empty?
+  #     puts `clear`
+  #     print "### Incorrect Format ###\n\n"
+  #     # explain_commands
+  #   else
+  #     @placed = true
+  #     place(string)
+  #   end
+  # end
+
+  def user_input
     @string = gets.strip
-    if @string.scan(/(\b(\w*PLACE\w*)\b )[0-4],[0-4],(NORTH|SOUTH|EAST|WEST)/).empty?
+    # p @string
+    # if @string[0] == "p" || @string[0] == "P"
+    #   place_check(@string)
+    # end
+    if invalid_place(@string)
       puts `clear`
       print "### Incorrect Format ###\n\n"
       explain_commands
-      place_check
-    else
-      @placed = true
+      user_input
+    elsif !invalid_place(@string)
+      place(@string)
+      report
     end
+
+
+    # case @string    
+    # when "MOVE"
+    #   move(@compass[0])
+    # when "LEFT"
+    #   rotate_left
+    # when "RIGHT"
+    #   rotate_right
+    # when "REPORT"
+    #   report
+    # when "q"
+    #   exit_app
+    # end 
+  end
+
+  def run
+    landing
+    menu
+    # loop do
+      user_input
+    # end
   end
 end
