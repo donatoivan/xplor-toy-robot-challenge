@@ -37,7 +37,7 @@ describe Robot do
   describe '.rotate_right' do
     subject(:robot) { described_class.new }
     
-    it 'doesn\'t rotate when robot is not placed on board' do
+    it "doesn't rotate when robot is not placed on board" do
       robot.rotate_right
       expect(robot.compass.first).to eql('NORTH')
     end
@@ -52,7 +52,7 @@ describe Robot do
   describe '.rotate_left' do
     subject(:robot) { described_class.new }
     
-    it 'doesn\'t rotate when robot is not placed on board' do
+    it "doesn't rotate when robot is not placed on board" do
       robot.rotate_left
       expect(robot.compass.first).to eql('NORTH')
     end
