@@ -1,7 +1,6 @@
 class Robot
   attr_accessor :compass, :placed, :commands, :menu_option
   def initialize
-    @commands = []
     @compass = ["NORTH", "EAST", "SOUTH", "WEST"]
     @menu_option = ''
     @x_coordinate = 0
@@ -46,7 +45,6 @@ class Robot
       puts `clear`
       explain_commands
     when 'q'
-      # exit app
       exit_app
     else
       puts "\n\nInvalid option. Try again"
@@ -87,11 +85,13 @@ class Robot
 
   def rotate_right
     return if @placed == false
+
     @compass.rotate!(1)
   end
 
   def rotate_left
     return if @placed == false
+
     @compass.rotate!(-1)
   end
 
