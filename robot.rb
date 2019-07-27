@@ -85,7 +85,6 @@ class Robot
 
   def rotate_right
     if @placed == false
-
       puts "Command Ignored. Place Robot on table to proceed e.g. PLACE 0,0,NORTH"
       return
     end
@@ -95,7 +94,6 @@ class Robot
 
   def rotate_left
     if @placed == false
-      
       puts "Command Ignored. Place Robot on table to proceed e.g. PLACE 0,0,NORTH"
       return
     end
@@ -105,7 +103,6 @@ class Robot
 
   def report
     if @placed == false
-      
       puts "Command Ignored. Place Robot on table to proceed e.g. PLACE 0,0,NORTH"
       return
     end
