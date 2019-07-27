@@ -72,7 +72,7 @@ describe Robot do
       robot.y_coordinate = 3
       robot.compass[0]
 
-      expect(STDOUT).to receive(:puts).with('1,3,NORTH')
+      expect(STDOUT).to receive(:puts).with("Command Ignored. Place Robot on table to proceed e.g. PLACE 0,0,NORTH")
       robot.report
     end
   end

@@ -70,10 +70,10 @@ class Robot
     print "* MOVE will move the toy robot one unit forward in the direction it is currently facing.\n"
     print "* LEFT and RIGHT will rotate the robot 90 degrees in the specified direction without changing the position of the robot.\n"
     print "* REPORT will announce the X,Y and F of the robot. \n\n"
-    print " Any move that would cause the robot to fall will be ignored.\n"
-    print "[q] Enter Q to quit the program\n"
-    print " The dimensions of the table are 5 units x 5 units (co-ordinates beyond (4,4) will not be accepted.\n"
-    print " A robot that is not on the table will ignore the MOVE, LEFT, RIGHT and REPORT commands.\n\n"
+    print " - The dimensions of the table are 5 units x 5 units (co-ordinates beyond (4,4) will not be accepted.\n"
+    print " - Any move that would cause the robot to fall off the table will be ignored.\n"
+    print " - [q] Enter Q to quit the program\n"
+    print " - A robot that is not on the table will ignore the MOVE, LEFT, RIGHT and REPORT commands.\n\n"
     print "### Example\n\n"
     print "PLACE 0,0,NORTH\n"
     print "MOVE\n"
@@ -84,18 +84,32 @@ class Robot
   end
 
   def rotate_right
-    return if @placed == false
+    if @placed == false
+
+      puts "Command Ignored. Place Robot on table to proceed e.g. PLACE 0,0,NORTH"
+      return
+    end
 
     @compass.rotate!(1)
   end
 
   def rotate_left
-    return if @placed == false
+    if @placed == false
+      
+      puts "Command Ignored. Place Robot on table to proceed e.g. PLACE 0,0,NORTH"
+      return
+    end
 
     @compass.rotate!(-1)
   end
 
   def report
+    if @placed == false
+      
+      puts "Command Ignored. Place Robot on table to proceed e.g. PLACE 0,0,NORTH"
+      return
+    end
+
     puts "#{@x_coordinate},#{@y_coordinate},#{@compass[0]}"
   end
 
@@ -118,7 +132,11 @@ class Robot
   end
 
   def move(facing)
-    return if @placed == false
+    if @placed == false
+      puts "Command Ignored. Place Robot on table to proceed e.g. PLACE 0,0,NORTH"
+      return
+    end
+
     case facing
     when 'NORTH'
       @x_coordinate += 1
