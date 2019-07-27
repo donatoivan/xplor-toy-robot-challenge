@@ -162,5 +162,33 @@ describe Robot do
 
   describe '.invalid_place' do
     subject(:robot) { described_class.new }
+
+    it 'returns true if place command is invalid' do 
+      expect(robot.invalid_place('ajdadaksjd')).to be(true)
+    end
+
+    it 'returns true if place command is lowercase' do 
+      expect(robot.invalid_place('place 1,1,north')).to be(true)
+    end
+
+    it 'returns true if spaces are added to input' do 
+      expect(robot.invalid_place('PLACE 1,1, NORTH')).to be(true)
+    end
+
+    it 'returns true if commas are forgotten' do 
+      expect(robot.invalid_place('PLACE 11, NORTH')).to be(true)
+    end
+
+    it 'returns true if x or y coordinates are above 4' do 
+      expect(robot.invalid_place('PLACE 5,5, NORTH')).to be(true)
+    end
+
+    it 'returns true if x or y coordinates are below 0' do 
+      expect(robot.invalid_place('PLACE -1,-1, NORTH')).to be(true)
+    end
+
+    it 'returns false if place command is valid' do 
+      expect(robot.invalid_place('PLACE 1,1,NORTH')).to be(false)
+    end
   end
 end
