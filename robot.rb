@@ -59,4 +59,22 @@ class Robot
       menu
     end
   end
+
+  def explain_commands
+    print "### Available commands:\n"
+    print "* PLACE will put the toy robot on the table in position X,Y and facing NORTH, SOUTH, EAST or WEST.\n"
+    print "* MOVE will move the toy robot one unit forward in the direction it is currently facing.\n"
+    print "* LEFT and RIGHT will rotate the robot 90 degrees in the specified direction without changing the position of the robot.\n"
+    print "* REPORT will announce the X,Y and F of the robot. \n\n"
+    print " Any move that would cause the robot to fall will be ignored."
+    print " The dimensions of the table are 5 units x 5 units (co-ordinates beyond (4,4) will not be accepted.\n"
+    print " A robot that is not on the table will ignore the MOVE, LEFT, RIGHT and REPORT commands."
+    print "### Example\n\n"
+    print "PLACE 0,0,NORTH\n"
+    print "MOVE\n"
+    print "REPORT\n\n"
+    print "Expected output:\n"
+    print "0,1,NORTH\n\n"
+    print ':'
+  end
 end
