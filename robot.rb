@@ -123,4 +123,20 @@ class Robot
     end
     check_limits
   end
+
+  def check_limits
+    if @x_coordinate > 4
+      puts "I'm already living on the edge"
+      @x_coordinate -= 1
+    elsif @y_coordinate > 4
+      puts "I'm already living on the edge"
+      @y_coordinate -= 1
+    elsif @x_coordinate < 0 
+      puts "I'm already living on the edge"
+      @x_coordinate += 1
+    elsif @y_coordinate < 0 
+      puts "I'm already living on the edge"
+      @y_coordinate += 1
+    end
+  end
 end
