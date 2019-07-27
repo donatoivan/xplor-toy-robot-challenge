@@ -100,6 +100,7 @@ class Robot
   end
 
   def place(string)
+    @compass = ["NORTH", "EAST", "SOUTH", "WEST"]
     @x_coordinate = string[6].to_i
     @y_coordinate = string[8].to_i
     @placed = true

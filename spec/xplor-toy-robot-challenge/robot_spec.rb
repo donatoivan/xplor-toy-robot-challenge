@@ -77,7 +77,6 @@ describe Robot do
     end
   end
 
-
   describe '.place' do
     subject(:robot) { described_class.new }
 
@@ -120,5 +119,48 @@ describe Robot do
       robot.move(robot.compass[0])
       expect(robot.x_coordinate).to be(1)
     end
+
+    it 'runs check_limits and triggers it if reaches table limit' do
+      robot.placed = true
+     
+      expect(STDOUT).to receive(:puts).with("I'm already living on the edge")
+      robot.move(robot.compass[0])
+      robot.move(robot.compass[0])
+      robot.move(robot.compass[0])
+      robot.move(robot.compass[0])
+      robot.move(robot.compass[0])
+    end
+  end
+
+  describe '.check_limits' do
+    subject(:robot) { described_class.new }
+
+    it 'outputs message if x coordinate exceeds value of 4' do
+      robot.x_coordinate = 5
+      expect(STDOUT).to receive(:puts).with("I'm already living on the edge")
+      robot.check_limits
+    end
+
+    it 'outputs message if x coordinate is less than 0' do
+      robot.x_coordinate = -1
+      expect(STDOUT).to receive(:puts).with("I'm already living on the edge")
+      robot.check_limits
+    end
+
+    it 'outputs message if y coordinate exceeds value of 4' do
+      robot.y_coordinate = 5
+      expect(STDOUT).to receive(:puts).with("I'm already living on the edge")
+      robot.check_limits
+    end
+
+    it 'outputs message if y coordinate is less than 0' do
+      robot.y_coordinate = -1
+      expect(STDOUT).to receive(:puts).with("I'm already living on the edge")
+      robot.check_limits
+    end
+  end
+
+  describe '.invalid_place' do
+    subject(:robot) { described_class.new }
   end
 end
