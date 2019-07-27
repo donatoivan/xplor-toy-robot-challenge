@@ -178,7 +178,9 @@ class Robot
     if @string[0] == "p" || @string[0] == "P"
       if invalid_place(@string)
         puts `clear`
-        print "### Incorrect Format ###\n\n"
+        print "### Please Read Instructions Carefully ###\n\n"
+        print "### Max x and y coordinates are (4,4) ###\n"
+        print "### Min x and y coordinates are (0,0) ###\n\n"
         explain_commands
       elsif !invalid_place(@string)
         place(@string)
@@ -195,7 +197,7 @@ class Robot
       exit_app
     else
       puts `clear`
-      print "### Incorrect Format ###\n\n"
+      print "### Please Read Instructions Carefully ###\n\n"
       explain_commands
     end
   end
