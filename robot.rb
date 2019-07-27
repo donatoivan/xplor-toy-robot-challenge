@@ -96,14 +96,14 @@ class Robot
   end
 
   def report
-    puts "X=#{@x_coordinate} Y=#{@y_coordinate} facing=#{@compass[0]}"
+    puts "#{@x_coordinate},#{@y_coordinate},#{@compass[0]}"
   end
 
   def place(string)
-    @x_coordinate = string[6]
-    @y_coordinate = string[8]
+    @x_coordinate = string[6].to_i
+    @y_coordinate = string[8].to_i
     @placed = true
-    
+
     case string[10..-1]
     when 'NORTH'
       @compass.rotate!(0)
@@ -153,53 +153,39 @@ class Robot
     false
   end
 
-  # def place_check(string)
-  #   if string.scan(/(\b(\w*PLACE\w*)\b )[0-4],[0-4],(NORTH|SOUTH|EAST|WEST)/).empty?
-  #     puts `clear`
-  #     print "### Incorrect Format ###\n\n"
-  #     # explain_commands
-  #   else
-  #     @placed = true
-  #     place(string)
-  #   end
-  # end
-
   def user_input
     @string = gets.strip
-    # p @string
-    # if @string[0] == "p" || @string[0] == "P"
-    #   place_check(@string)
-    # end
-    if invalid_place(@string)
+
+    if @string[0] == "p" || @string[0] == "P"
+      if invalid_place(@string)
+        puts `clear`
+        print "### Incorrect Format ###\n\n"
+        explain_commands
+      elsif !invalid_place(@string)
+        place(@string)
+      end
+    elsif @string == "MOVE"
+      move(@compass[0])
+    elsif @string == "LEFT"
+      rotate_left
+    elsif @string == "RIGHT"
+      rotate_right
+    elsif @string == "REPORT"
+      report
+    elsif @string == "q" || @string == "Q"
+      exit_app
+    else
       puts `clear`
       print "### Incorrect Format ###\n\n"
       explain_commands
-      user_input
-    elsif !invalid_place(@string)
-      place(@string)
-      report
     end
-
-
-    # case @string    
-    # when "MOVE"
-    #   move(@compass[0])
-    # when "LEFT"
-    #   rotate_left
-    # when "RIGHT"
-    #   rotate_right
-    # when "REPORT"
-    #   report
-    # when "q"
-    #   exit_app
-    # end 
   end
 
   def run
     landing
     menu
-    # loop do
+    loop do
       user_input
-    # end
+    end
   end
 end
