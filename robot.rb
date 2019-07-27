@@ -87,4 +87,8 @@ class Robot
     return if @placed == false
     @compass.rotate!(-1)
   end
+
+  def report
+    puts "X=#{@x_coordinate} Y=#{@y_coordinate} facing=#{@compass[0]}"
+  end
 end
