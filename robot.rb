@@ -29,4 +29,11 @@ class Robot
     print "Instruct your robot to move via commands in the CLI.\n"
     print "To continue, please select one of the following options:\n\n"
   end
+
+  def menu
+    print "\nInput Options:\n"
+    print "\n[c] Enter C to type in a command for the robot\n"
+    print "[q] Enter Q to quit the program\n\n"
+    print ':'
+  end
 end
