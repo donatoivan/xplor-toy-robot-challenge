@@ -25,13 +25,13 @@ describe Robot do
       expect(robot.menu_option.empty?).to be(true)
     end
 
-    context 'when turning left or right' do
-      it 'faces East on one rotation to the right' do
+    context 'facing north; turning left or right' do
+      it 'has East as first compass element when rotating by 1' do
         robot.compass.rotate!(1)
         expect(robot.compass.first).to eql('EAST')
       end
 
-      it 'faces West on two rotations to the left' do
+      it 'has West as first compass element when rotating by -1 ' do
         robot.compass.rotate!(-1)
         expect(robot.compass.first).to eql('WEST')
       end
