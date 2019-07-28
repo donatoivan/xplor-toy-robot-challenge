@@ -93,7 +93,7 @@ describe Robot do
       robot.place('PLACE 3,2,EAST')
       expect(robot.x_coordinate).to be(3)
     end
-
+    
     it 'sets y coordinate when placed' do 
       robot.place('PLACE 4,1,WEST')
       expect(robot.y_coordinate).to be(1)
