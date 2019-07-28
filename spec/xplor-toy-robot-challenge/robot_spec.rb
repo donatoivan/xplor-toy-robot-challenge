@@ -71,12 +71,22 @@ describe Robot do
   describe '.report' do
     subject(:robot) { described_class.new }
 
-    it 'prints x and y coordinates, direction facing' do
+    it 'prints error message if robot is not on board' do
       robot.x_coordinate = 1
       robot.y_coordinate = 3
       robot.compass[0]
 
-      expect(STDOUT).to receive(:puts).with("Command Ignored. Place Robot on table to proceed e.g. PLACE 0,0,NORTH")
+      expect(STDOUT).to receive(:puts).with('Command Ignored. Place Robot on table to proceed e.g. PLACE 0,0,NORTH')
+      robot.report
+    end
+
+    it 'prints x and y coordinates and direction facing' do
+      robot.placed = true
+      robot.x_coordinate = 1
+      robot.y_coordinate = 3
+      robot.compass[0]
+
+      expect(STDOUT).to receive(:puts).with('1,3,NORTH')
       robot.report
     end
   end
