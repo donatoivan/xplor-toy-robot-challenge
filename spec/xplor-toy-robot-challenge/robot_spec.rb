@@ -21,6 +21,10 @@ describe Robot do
       expect(robot.compass.first).to eql('NORTH')
     end
 
+    it 'has inital menu_option with empty value' do
+      expect(robot.menu_option.empty?).to be(true)
+    end
+
     context 'when turning left or right' do
       it 'faces East on one rotation to the right' do
         robot.compass.rotate!(1)
@@ -94,12 +98,7 @@ describe Robot do
       robot.place('PLACE 4,1,WEST')
       expect(robot.y_coordinate).to be(1)
     end
-
-    it 'sets y coordinate when placed' do 
-      robot.place('PLACE 4,1,WEST')
-      expect(robot.y_coordinate).to be(1)
-    end
-
+    
     it 'rotates the compass to face the right way' do
       robot.place('PLACE 4,1,WEST')
       expect(robot.compass[0]).to eql('WEST')
