@@ -148,9 +148,9 @@ movement of the toy robot.
 
 ## Build Process
 
-The most difficult part of the build was organizing the logic stream into one cohesive unit. The logic I've used to move my robot around isn't the most complex; The four cadinal directions are represented as an array. The first element in the array represent the way the robot is facing. When LEFT OR RIGHT is chosen by the user the array is rotated by 1 or -1 depending on which way the user wants to turn.
+The most difficult part of the build was organizing the logic stream into one cohesive unit. The logic I've used to move my robot around isn't the most complex; The four cadinal directions are represented as an array. The first element in the array represents the way the robot is facing. When LEFT OR RIGHT is chosen by the user the array is rotated by 1 or -1 depending on which way the user wants to turn.
 
-I wanted to focus on input sanitization and error handling for my build. The best way I found to do this, particularly with reagrds to the PLACE command, was to use regex. That way I could be really specific with what I wanted to ask the user for in terms of input formatting. Sitting and playing around with different regular expressions was really interesting. I had used some very basic regular expressions in the past, like ones that check to see if a string contained numbers or letters. This was the first time I really appreciated how powerful it can be regex can be.
+I wanted to focus on input sanitization and error handling for my build. The best way I found to do this, particularly with regards to the PLACE command, was to use regex. That way I could be really specific with what I wanted to ask the user for in terms of input formatting. Sitting and playing around with different regular expressions was really interesting. I had used some very basic regular expressions in the past, like ones that check to see if a string contained numbers or letters. This was the first time I really appreciated how powerful regex can be.
 
 For the Ascii Art in my app I used [ASCII Generator - Network Science](http://www.network-science.de/ascii/)
 
@@ -166,7 +166,7 @@ gem 'rspec', '~> 3.8'
 
 ## Testing
 
-My tests are predominantly made up of unit tests for my application methods. I ignored the methods that display text as all they do is print text to the CLI.
+My tests are predominantly made up of unit tests for my application methods. I ignored the methods that just display text as all i founf this to be unnecessary. The Robot starts facing NORTH for most of my tests, unless stated otherwise.
 
 Run this command in the app root directory to run my tests:
 
